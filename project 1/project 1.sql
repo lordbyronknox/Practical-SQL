@@ -42,11 +42,7 @@ values ('Adel', 'Jones', 'female', '10 Down st.', 'ajones@mail.com', 1, 1, 3, 3)
 	   ('Ellen', 'Man', 'Woman', '1 Jigger st.', 'eman@mail.com', 1, 1, 1, 2),
 	   ('Frank', 'Freak', 'Man', '21 Jump St', 'ffreak@mail.com', 2, 2, 1, 4);
 
-select * from employees
-select * from department	
-select * from roles
-select * from salaries
-select * from overtime_hours
+
 	   
 insert into department (depart_name, depart_city)
 values ('finance', 'Joburg'),
@@ -71,11 +67,23 @@ values (2),
 	   (4),
 	   (6),
 	   (8);
+
+select * from employees
+select * from department	
+select * from roles
+select * from salaries
+select * from overtime_hours
 	   
 	   
-	   
-select department.depart_name, roles.role as job title, salaries.salary_pa, 
+select employees.first_name, employees.surname, employees.gender, employees.address,
+employees.email,department.depart_name, roles.role, salaries.salary_pa, 
 overtime_hours.overtime_hours
 from employees left join department
-on employees.
+on employees.depart_id = department.depart_id
+left join roles
+on employees.role_id = roles.role_id
+left join salaries
+on employees.salary_id = salaries.salary_id
+left join overtime_hours
+on employees.overtime_id = overtime_hours.overtime_hours
 

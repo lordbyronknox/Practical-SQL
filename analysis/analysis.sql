@@ -1177,7 +1177,7 @@ CREATE TABLE state_regions (
 );
 
 COPY state_regions
-FROM 'C:\YourDirectory\state_regions.csv'
+FROM 'C:\Users\byron\SQL\SQL\projects\analysis\state_regions.csv'
 WITH (FORMAT CSV, HEADER, DELIMITER ',');
 
 -- Listing 9-19: Adding and updating an inspection_date column
@@ -1189,7 +1189,8 @@ SET inspection_date = '2019-12-01'
 WHERE EXISTS (SELECT state_regions.region
               FROM state_regions
               WHERE inspect.st = state_regions.st 
-                    AND state_regions.region = 'New England');
+                    AND state_regions.region = 'New England')
+;
 
 -- Listing 9-20: Viewing updated inspection_date values
 
@@ -1206,10 +1207,11 @@ WHERE st IN('PR','VI');
 -- Listing 9-22: Remove a column from a table using DROP
 
 ALTER TABLE meat_poultry_egg_inspect DROP COLUMN zip_copy;
-
+ALTER TABLE meat_poultry_egg_inspect DROP COLUMN company_standard;
 -- Listing 9-23: Remove a table from a database using DROP
 
 DROP TABLE meat_poultry_egg_inspect_backup;
+
 
 -- Listing 9-24: Demonstrating a transaction block
 
@@ -1254,7 +1256,9 @@ FROM meat_poultry_egg_inspect;
 -- Listing 9-26: Swapping table names using ALTER TABLE
 
 ALTER TABLE meat_poultry_egg_inspect RENAME TO meat_poultry_egg_inspect_temp;
+
 ALTER TABLE meat_poultry_egg_inspect_backup RENAME TO meat_poultry_egg_inspect;
+
 ALTER TABLE meat_poultry_egg_inspect_temp RENAME TO meat_poultry_egg_inspect_backup;
 
 
